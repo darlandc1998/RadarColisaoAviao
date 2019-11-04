@@ -12,6 +12,7 @@ public class Aviao {
     private Double angulo;
     private Double velocidade;
     private Double direcao;
+    private boolean visualiza = true;
 
     public Aviao() {
     }
@@ -83,9 +84,15 @@ public class Aviao {
     public void setDirecao(Double direcao) {
         this.direcao = direcao;
     }
-    
-    
 
+    public boolean isVisualiza() {
+        return visualiza;
+    }
+
+    public void setVisualiza(boolean visualiza) {
+        this.visualiza = visualiza;
+    }
+    
     @Override
     public int hashCode() {
         int hash = 7;

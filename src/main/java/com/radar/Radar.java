@@ -41,7 +41,8 @@ public class Radar extends javax.swing.JFrame {
             this.avioes.add(aviao);
         }
 
-        limparCampos();
+        limparCamposDadosAviao();
+        limparTabelaAvioes();
         carregarListaDeAvioes();
     }
 
@@ -53,11 +54,11 @@ public class Radar extends javax.swing.JFrame {
         DefaultTableModel model = (DefaultTableModel) jTbAvioes.getModel();
 
         for (Aviao aviao : this.avioes) {
-            model.addRow(new String[]{String.valueOf(aviao.getId()), aviao.getModelo(), String.valueOf(aviao.getX()), String.valueOf(aviao.getY()), String.valueOf(aviao.getRaio()), String.valueOf(aviao.getAngulo()), String.valueOf(aviao.getVelocidade()), String.valueOf(aviao.getDirecao())});
+            model.addRow(new Object[]{aviao.isVisualiza(), String.valueOf(aviao.getId()), aviao.getModelo(), String.valueOf(aviao.getX()), String.valueOf(aviao.getY()), String.valueOf(aviao.getRaio()), String.valueOf(aviao.getAngulo()), String.valueOf(aviao.getVelocidade()), String.valueOf(aviao.getDirecao())});
         }
     }
 
-    private void limparCampos() {
+    private void limparCamposDadosAviao() {
         this.idAviaoSelecionado = null;
 
         jTxtX.setText(null);
@@ -66,6 +67,15 @@ public class Radar extends javax.swing.JFrame {
         jTxtAngulo.setText(null);
         jTxtVelocidade.setText(null);
         jTxtDirecao.setText(null);
+    }
+
+    private void limparTabelaAvioes() {
+        DefaultTableModel model = (DefaultTableModel) jTbAvioes.getModel();
+
+        while (model.getRowCount() > 0) {
+            model.removeRow(0);
+        }
+
     }
 
     /**
@@ -169,12 +179,19 @@ public class Radar extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Código", "Modelo", "X", "Y", "Raio", "Ângulo", "Velocidade", "Direção"
+                "Visualizar", "Código", "Modelo", "X", "Y", "Raio", "Ângulo", "Velocidade", "Direção"
             }
         ) {
-            boolean[] canEdit = new boolean [] {
-                false, false, false, false, false, false, false, false
+            Class[] types = new Class [] {
+                java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
+            boolean[] canEdit = new boolean [] {
+                true, false, false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
