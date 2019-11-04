@@ -1,21 +1,71 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.radar;
 
-/**
- *
- * @author darlan
- */
+import java.util.ArrayList;
+import java.util.List;
+import javax.swing.table.DefaultTableModel;
+import modelos.Aviao;
+import utils.UtilAviao;
+
 public class Radar extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Radar
-     */
+    private Integer idAviaoSelecionado = null;
+    private List<Aviao> avioes = new ArrayList<>();
+
     public Radar() {
         initComponents();
+    }
+
+    private void inserirOuEditarAviao() {
+        String txtX = jTxtX.getText();
+        String txtY = jTxtY.getText();
+        String txtRaio = jTxtRaio.getText();
+        String txtAngulo = jTxtAngulo.getText();
+        String txtVelocidade = jTxtVelocidade.getText();
+        String txtDirecao = jTxtDirecao.getText();
+
+        Aviao aviao = new Aviao();
+        aviao.setId(this.idAviaoSelecionado != null ? this.idAviaoSelecionado : UtilAviao.getNextId(this.avioes));
+        aviao.setModelo("Avião " + aviao.getId());
+        aviao.setX(Double.parseDouble(txtX));
+        aviao.setY(Double.parseDouble(txtY));
+        aviao.setRaio(Double.parseDouble(txtRaio));
+        aviao.setAngulo(Double.parseDouble(txtAngulo));
+        aviao.setVelocidade(Double.parseDouble(txtVelocidade));
+        aviao.setDirecao(Double.parseDouble(txtDirecao));
+
+        int index = this.avioes.indexOf(aviao);
+
+        if (index > -1) {
+            this.avioes.set(index, aviao);
+        } else {
+            this.avioes.add(aviao);
+        }
+
+        limparCampos();
+        carregarListaDeAvioes();
+    }
+
+    private void excluirAviao(Integer idAviao) {
+        this.avioes.remove(new Aviao(idAviao));
+    }
+
+    private void carregarListaDeAvioes() {
+        DefaultTableModel model = (DefaultTableModel) jTbAvioes.getModel();
+
+        for (Aviao aviao : this.avioes) {
+            model.addRow(new String[]{String.valueOf(aviao.getId()), aviao.getModelo(), String.valueOf(aviao.getX()), String.valueOf(aviao.getY()), String.valueOf(aviao.getRaio()), String.valueOf(aviao.getAngulo()), String.valueOf(aviao.getVelocidade()), String.valueOf(aviao.getDirecao())});
+        }
+    }
+
+    private void limparCampos() {
+        this.idAviaoSelecionado = null;
+
+        jTxtX.setText(null);
+        jTxtY.setText(null);
+        jTxtRaio.setText(null);
+        jTxtAngulo.setText(null);
+        jTxtVelocidade.setText(null);
+        jTxtDirecao.setText(null);
     }
 
     /**
@@ -159,6 +209,11 @@ public class Radar extends javax.swing.JFrame {
         jTxtDirecao.setPreferredSize(new java.awt.Dimension(120, 25));
 
         jBtnSalvarAviao.setText("Salvar");
+        jBtnSalvarAviao.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jBtnSalvarAviaoMouseClicked(evt);
+            }
+        });
         jBtnSalvarAviao.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jBtnSalvarAviaoActionPerformed(evt);
@@ -541,6 +596,10 @@ public class Radar extends javax.swing.JFrame {
     private void jBtnSalvarAviaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnSalvarAviaoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jBtnSalvarAviaoActionPerformed
+
+    private void jBtnSalvarAviaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBtnSalvarAviaoMouseClicked
+        inserirOuEditarAviao();
+    }//GEN-LAST:event_jBtnSalvarAviaoMouseClicked
 
     /**
      * @param args the command line arguments

@@ -8,11 +8,18 @@ public class Aviao {
     private String modelo;
     private Double x;
     private Double y;
-    private Double radio;
+    private Double raio;
     private Double angulo;
     private Double velocidade;
     private Double direcao;
 
+    public Aviao() {
+    }
+
+    public Aviao(Integer id) {
+        this.id = id;
+    }
+    
     public Integer getId() {
         return id;
     }
@@ -45,12 +52,12 @@ public class Aviao {
         this.y = y;
     }
 
-    public Double getRadio() {
-        return radio;
+    public Double getRaio() {
+        return raio;
     }
 
-    public void setRadio(Double radio) {
-        this.radio = radio;
+    public void setRaio(Double raio) {
+        this.raio = raio;
     }
 
     public Double getAngulo() {
