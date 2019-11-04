@@ -6,6 +6,20 @@ public class Coordenada {
     private Double y;
     private Double angulo;
 
+    public Coordenada() {
+    }
+
+    public Coordenada(Double x, Double y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    public Coordenada(Double x, Double y, Double angulo) {
+        this.x = x;
+        this.y = y;
+        this.angulo = angulo;
+    }
+    
     public Double getX() {
         return x;
     }

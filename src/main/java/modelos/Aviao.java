@@ -20,7 +20,7 @@ public class Aviao {
     public Aviao(Integer id) {
         this.id = id;
     }
-    
+
     public Integer getId() {
         return id;
     }
@@ -92,7 +92,7 @@ public class Aviao {
     public void setVisualiza(boolean visualiza) {
         this.visualiza = visualiza;
     }
-    
+
     @Override
     public int hashCode() {
         int hash = 7;
@@ -116,6 +116,11 @@ public class Aviao {
             return false;
         }
         return true;
+    }
+
+    @Override
+    public String toString() {
+        return "Aviao{" + "id=" + id + ", modelo=" + modelo + ", x=" + x + ", y=" + y + ", raio=" + raio + ", angulo=" + angulo + ", velocidade=" + velocidade + ", direcao=" + direcao + ", visualiza=" + visualiza + '}';
     }
 
 }
