@@ -7,6 +7,7 @@ import javax.swing.table.DefaultTableModel;
 import modelos.Aviao;
 import modelos.Coordenada;
 import utils.UtilAviao;
+import utils.UtilComponentes;
 import utils.UtilFuncoesTransformacao;
 
 public class Radar extends javax.swing.JFrame {
@@ -144,6 +145,19 @@ public class Radar extends javax.swing.JFrame {
         return new Coordenada(Double.parseDouble(txtX), Double.parseDouble(txtY), Double.parseDouble(angulo));
     }
 
+    private void recarregarAvioesNoRadar() {
+        jPnRadar.removeAll();
+
+        for (Aviao aviao : this.avioes) {
+            if (aviao.isVisualiza()) {
+                jPnRadar.add(UtilComponentes.getIconeAviao(aviao));
+            }
+        }
+
+        jPnRadar.validate();
+        jPnRadar.repaint();
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -211,6 +225,8 @@ public class Radar extends javax.swing.JFrame {
         setPreferredSize(new java.awt.Dimension(1024, 500));
         setResizable(false);
 
+        jPnRadar.setLayout(null);
+
         jListRelatorio.setModel(new javax.swing.AbstractListModel<String>() {
             String[] strings = { "Avião adicionado" };
             public int getSize() { return strings.length; }
@@ -218,26 +234,12 @@ public class Radar extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(jListRelatorio);
 
-        jLblRelatorio.setText("Relatório");
+        jPnRadar.add(jScrollPane2);
+        jScrollPane2.setBounds(0, 369, 1092, 139);
 
-        javax.swing.GroupLayout jPnRadarLayout = new javax.swing.GroupLayout(jPnRadar);
-        jPnRadar.setLayout(jPnRadarLayout);
-        jPnRadarLayout.setHorizontalGroup(
-            jPnRadarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane2)
-            .addGroup(jPnRadarLayout.createSequentialGroup()
-                .addGap(512, 512, 512)
-                .addComponent(jLblRelatorio)
-                .addContainerGap(515, Short.MAX_VALUE))
-        );
-        jPnRadarLayout.setVerticalGroup(
-            jPnRadarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPnRadarLayout.createSequentialGroup()
-                .addGap(0, 345, Short.MAX_VALUE)
-                .addComponent(jLblRelatorio)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        jLblRelatorio.setText("Relatório");
+        jPnRadar.add(jLblRelatorio);
+        jLblRelatorio.setBounds(512, 348, 65, 15);
 
         jTabAvioes.addTab("Radar", jPnRadar);
 
@@ -717,6 +719,7 @@ public class Radar extends javax.swing.JFrame {
         inserirOuEditarAviao();
         limparCampos();
         recarregarAvioes();
+        recarregarAvioesNoRadar();
     }//GEN-LAST:event_jBtnSalvarAviaoMouseClicked
 
     private void jTbAvioesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTbAvioesMouseClicked
@@ -739,6 +742,7 @@ public class Radar extends javax.swing.JFrame {
 
         limparCampos();
         recarregarAvioes();
+        recarregarAvioesNoRadar();
     }//GEN-LAST:event_JBtnExcluirMouseClicked
 
     private void jBtnTranslandarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBtnTranslandarMouseClicked
