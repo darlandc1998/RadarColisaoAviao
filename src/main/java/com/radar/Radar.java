@@ -2,6 +2,7 @@ package com.radar;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelos.Aviao;
 import modelos.Coordenada;
@@ -42,10 +43,6 @@ public class Radar extends javax.swing.JFrame {
         } else {
             this.avioes.add(aviao);
         }
-
-        limparCamposDadosAviao();
-        limparTabelaAvioes();
-        carregarListaDeAvioes();
     }
 
     private void excluirAviao(Integer idAviao) {
@@ -71,7 +68,24 @@ public class Radar extends javax.swing.JFrame {
         jTxtDirecao.setText(null);
     }
 
+    private void limparCamposDadosTranslacao() {
+        jTxtXTranslandar.setText(null);
+        jTxtYTranslandar.setText(null);
+    }
+
+    private void limparCamposDadosEscalonamento() {
+        jTxtXEscalonar.setText(null);
+        jTxtYEscalonar.setText(null);
+    }
+
+    private void limparCamposDadosRotacao() {
+        jTxtXRotacionar.setText(null);
+        jTxtYRotacionar.setText(null);
+    }
+
     private void carregarCamposDadosAviao(Aviao aviao) {
+        this.idAviaoSelecionado = aviao.getId();
+
         jTxtX.setText(String.valueOf(aviao.getX()));
         jTxtY.setText(String.valueOf(aviao.getY()));
         jTxtRaio.setText(String.valueOf(aviao.getRaio()));
@@ -94,6 +108,13 @@ public class Radar extends javax.swing.JFrame {
         carregarListaDeAvioes();
     }
 
+    private void limparCampos() {
+        limparCamposDadosAviao();
+        limparCamposDadosTranslacao();
+        limparCamposDadosEscalonamento();
+        limparCamposDadosRotacao();
+    }
+
     private Aviao getAviaoSelecionado() {
         int index = this.avioes.indexOf(new Aviao(this.idAviaoSelecionado));
 
@@ -110,7 +131,7 @@ public class Radar extends javax.swing.JFrame {
         return new Coordenada(Double.valueOf(txtX), Double.valueOf(txtY));
     }
 
-    private Coordenada getCoordenadaEscalonar() {
+    private Coordenada getCoordenadaEscalonamento() {
         String txtX = jTxtXEscalonar.getText();
         String txtY = jTxtYEscalonar.getText();
         return new Coordenada(Double.parseDouble(txtX), Double.parseDouble(txtY));
@@ -444,7 +465,7 @@ public class Radar extends javax.swing.JFrame {
                     .addGroup(jPnTranslandarLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jBtnTranslandar, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         jPnTranslandarLayout.setVerticalGroup(
             jPnTranslandarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -584,7 +605,7 @@ public class Radar extends javax.swing.JFrame {
                             .addGroup(jPnRotacionarLayout.createSequentialGroup()
                                 .addComponent(jBtnRotacionar, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(1, 1, 1)))
-                        .addContainerGap(17, Short.MAX_VALUE))
+                        .addContainerGap(7, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPnRotacionarLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLblRotacionar)
@@ -694,15 +715,15 @@ public class Radar extends javax.swing.JFrame {
 
     private void jBtnSalvarAviaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBtnSalvarAviaoMouseClicked
         inserirOuEditarAviao();
+        limparCampos();
+        recarregarAvioes();
     }//GEN-LAST:event_jBtnSalvarAviaoMouseClicked
 
     private void jTbAvioesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTbAvioesMouseClicked
         if (evt.getClickCount() == 2) {
             int rowSelected = jTbAvioes.getSelectedRow();
-            if (rowSelected != -1) {
-                Aviao aviao = this.avioes.get(rowSelected);
-                carregarCamposDadosAviao(aviao);
-                this.idAviaoSelecionado = aviao.getId();
+            if (rowSelected > -1) {
+                carregarCamposDadosAviao(this.avioes.get(rowSelected));
             }
         }
     }//GEN-LAST:event_jTbAvioesMouseClicked
@@ -710,26 +731,31 @@ public class Radar extends javax.swing.JFrame {
     private void JBtnExcluirMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_JBtnExcluirMouseClicked
 
         if (this.idAviaoSelecionado == null) {
+            JOptionPane.showMessageDialog(null, "Selecione um avião para excluir");
             return;
         }
 
         excluirAviao(this.idAviaoSelecionado);
-        limparCamposDadosAviao();
+
+        limparCampos();
         recarregarAvioes();
     }//GEN-LAST:event_JBtnExcluirMouseClicked
 
     private void jBtnTranslandarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBtnTranslandarMouseClicked
         UtilFuncoesTransformacao.translandar(getAviaoSelecionado(), getCoordenadaTranslacao());
+        limparCamposDadosTranslacao();
         recarregarAvioes();
     }//GEN-LAST:event_jBtnTranslandarMouseClicked
 
     private void jBtnEscalonarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBtnEscalonarMouseClicked
-        UtilFuncoesTransformacao.escalonar(getAviaoSelecionado(), getCoordenadaEscalonar());
+        UtilFuncoesTransformacao.escalonar(getAviaoSelecionado(), getCoordenadaEscalonamento());
+        limparCamposDadosEscalonamento();
         recarregarAvioes();
     }//GEN-LAST:event_jBtnEscalonarMouseClicked
 
     private void jBtnRotacionarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBtnRotacionarMouseClicked
         UtilFuncoesTransformacao.rotacionar(getAviaoSelecionado(), getCoordenadaRotacao());
+        limparCamposDadosRotacao();
         recarregarAvioes();
     }//GEN-LAST:event_jBtnRotacionarMouseClicked
 
