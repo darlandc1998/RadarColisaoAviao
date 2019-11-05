@@ -146,16 +146,16 @@ public class Radar extends javax.swing.JFrame {
     }
 
     private void recarregarAvioesNoRadar() {
-        jPnRadar.removeAll();
+        jPnRadarAvioes.removeAll();
 
         for (Aviao aviao : this.avioes) {
             if (aviao.isVisualiza()) {
-                jPnRadar.add(UtilComponentes.getIconeAviao(aviao));
+                jPnRadarAvioes.add(UtilComponentes.getIconeAviao(aviao));
             }
         }
 
-        jPnRadar.validate();
-        jPnRadar.repaint();
+        jPnRadarAvioes.validate();
+        jPnRadarAvioes.repaint();
     }
 
     /**
@@ -170,8 +170,9 @@ public class Radar extends javax.swing.JFrame {
         jTabAvioes = new javax.swing.JTabbedPane();
         jPnRadar = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jListRelatorio = new javax.swing.JList<>();
+        jListRelatorio = new javax.swing.JList<String>();
         jLblRelatorio = new javax.swing.JLabel();
+        jPnRadarAvioes = new javax.swing.JPanel();
         jPnAvioes = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTbAvioes = new javax.swing.JTable();
@@ -227,19 +228,24 @@ public class Radar extends javax.swing.JFrame {
 
         jPnRadar.setLayout(null);
 
-        jListRelatorio.setModel(new javax.swing.AbstractListModel<String>() {
+        jListRelatorio.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Avião adicionado" };
             public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+            public Object getElementAt(int i) { return strings[i]; }
         });
         jScrollPane2.setViewportView(jListRelatorio);
 
         jPnRadar.add(jScrollPane2);
-        jScrollPane2.setBounds(0, 369, 1092, 139);
+        jScrollPane2.setBounds(0, 369, 1092, 130);
 
         jLblRelatorio.setText("Relatório");
         jPnRadar.add(jLblRelatorio);
-        jLblRelatorio.setBounds(512, 348, 65, 15);
+        jLblRelatorio.setBounds(512, 348, 43, 14);
+
+        jPnRadarAvioes.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jPnRadarAvioes.setLayout(null);
+        jPnRadar.add(jPnRadarAvioes);
+        jPnRadarAvioes.setBounds(0, 0, 440, 300);
 
         jTabAvioes.addTab("Radar", jPnRadar);
 
@@ -467,7 +473,7 @@ public class Radar extends javax.swing.JFrame {
                     .addGroup(jPnTranslandarLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jBtnTranslandar, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addContainerGap(18, Short.MAX_VALUE))
         );
         jPnTranslandarLayout.setVerticalGroup(
             jPnTranslandarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -607,7 +613,7 @@ public class Radar extends javax.swing.JFrame {
                             .addGroup(jPnRotacionarLayout.createSequentialGroup()
                                 .addComponent(jBtnRotacionar, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(1, 1, 1)))
-                        .addContainerGap(7, Short.MAX_VALUE))
+                        .addContainerGap(17, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPnRotacionarLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jLblRotacionar)
@@ -831,6 +837,7 @@ public class Radar extends javax.swing.JFrame {
     private javax.swing.JPanel jPnFuncoesTransformacao;
     private javax.swing.JPanel jPnOperacoesAvioes;
     private javax.swing.JPanel jPnRadar;
+    private javax.swing.JPanel jPnRadarAvioes;
     private javax.swing.JPanel jPnRotacionar;
     private javax.swing.JPanel jPnTranslandar;
     private javax.swing.JScrollPane jScrollPane1;

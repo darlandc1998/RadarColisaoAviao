@@ -8,7 +8,7 @@ import modelos.Aviao;
 public final class UtilComponentes {
     
     //Quando for usar alterar esse caminho conforme o do pc utilizado
-    private static final String URL_IMAGEM = "/home/darlan/Documentos/Projetos/Java/Radar Colisao Avião/src/main/java/imagens/airplane.png";
+    private static final String URL_IMAGEM = "C:\\Users\\lab202a\\Documents\\NetBeansProjects\\RadarColisaoAviao\\src\\main\\java\\imagens\\airplane.png";
     
 
     public static JLabel getIconeAviao(Aviao aviao){
