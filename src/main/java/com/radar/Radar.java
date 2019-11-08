@@ -167,16 +167,8 @@ public class Radar extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jTabAvioes = new javax.swing.JTabbedPane();
         jPnRadar = new javax.swing.JPanel();
-        jScrollPane2 = new javax.swing.JScrollPane();
-        jListRelatorio = new javax.swing.JList<String>();
-        jLblRelatorio = new javax.swing.JLabel();
         jPnRadarAvioes = new javax.swing.JPanel();
-        jPnAvioes = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTbAvioes = new javax.swing.JTable();
-        jPnOperacoesAvioes = new javax.swing.JPanel();
         jTabOperacoesAvioes = new javax.swing.JTabbedPane();
         jPnEntradaDados = new javax.swing.JPanel();
         jPnDadosAviao = new javax.swing.JPanel();
@@ -193,7 +185,6 @@ public class Radar extends javax.swing.JFrame {
         jLblAngulo1 = new javax.swing.JLabel();
         jTxtDirecao = new javax.swing.JTextField();
         jBtnSalvarAviao = new javax.swing.JButton();
-        jLblDadosAviao = new javax.swing.JLabel();
         JBtnExcluir = new javax.swing.JButton();
         jPnFuncoesTransformacao = new javax.swing.JPanel();
         jPnTranslandar = new javax.swing.JPanel();
@@ -202,14 +193,12 @@ public class Radar extends javax.swing.JFrame {
         jLblTranslandarY = new javax.swing.JLabel();
         jTxtYTranslandar = new javax.swing.JTextField();
         jBtnTranslandar = new javax.swing.JButton();
-        jLblTranslandar = new javax.swing.JLabel();
         jPnEscalonar = new javax.swing.JPanel();
         jTxtXEscalonar = new javax.swing.JTextField();
         jLblEscalonarX = new javax.swing.JLabel();
         jLblEscalonarY = new javax.swing.JLabel();
         jTxtYEscalonar = new javax.swing.JTextField();
         jBtnEscalonar = new javax.swing.JButton();
-        jLblEscalonar = new javax.swing.JLabel();
         jPnRotacionar = new javax.swing.JPanel();
         jLblAnguloRotacionar = new javax.swing.JLabel();
         jTxtAnguloRotacionar = new javax.swing.JTextField();
@@ -219,71 +208,35 @@ public class Radar extends javax.swing.JFrame {
         jTxtYRotacionar = new javax.swing.JTextField();
         jLblRotacionarY = new javax.swing.JLabel();
         jBtnRotacionar = new javax.swing.JButton();
-        jLblRotacionar = new javax.swing.JLabel();
+        jPnAvioes = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTbAvioes = new javax.swing.JTable();
+        jPnRelatorio = new javax.swing.JPanel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jListRelatorio = new javax.swing.JList<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Radar");
-        setPreferredSize(new java.awt.Dimension(1024, 500));
+        setPreferredSize(new java.awt.Dimension(1200, 700));
         setResizable(false);
 
         jPnRadar.setLayout(null);
 
-        jListRelatorio.setModel(new javax.swing.AbstractListModel() {
-            String[] strings = { "Avião adicionado" };
-            public int getSize() { return strings.length; }
-            public Object getElementAt(int i) { return strings[i]; }
-        });
-        jScrollPane2.setViewportView(jListRelatorio);
-
-        jPnRadar.add(jScrollPane2);
-        jScrollPane2.setBounds(0, 369, 1092, 130);
-
-        jLblRelatorio.setText("Relatório");
-        jPnRadar.add(jLblRelatorio);
-        jLblRelatorio.setBounds(512, 348, 43, 14);
-
         jPnRadarAvioes.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jPnRadarAvioes.setLayout(null);
         jPnRadar.add(jPnRadarAvioes);
-        jPnRadarAvioes.setBounds(0, 0, 440, 300);
+        jPnRadarAvioes.setBounds(10, 10, 470, 340);
 
-        jTabAvioes.addTab("Radar", jPnRadar);
-
-        jTbAvioes.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "Visualizar", "Código", "Modelo", "X", "Y", "Raio", "Ângulo", "Velocidade", "Direção"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
-            };
-            boolean[] canEdit = new boolean [] {
-                true, false, false, false, false, false, false, false, false
-            };
-
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-            }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
-        jTbAvioes.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTbAvioesMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(jTbAvioes);
-
-        jPnDadosAviao.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPnDadosAviao.setBorder(javax.swing.BorderFactory.createTitledBorder("Adicionar avião"));
 
         jLblX.setText("X:");
 
         jTxtX.setPreferredSize(new java.awt.Dimension(120, 25));
+        jTxtX.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTxtXActionPerformed(evt);
+            }
+        });
 
         jLblY.setText("Y:");
 
@@ -317,12 +270,15 @@ public class Radar extends javax.swing.JFrame {
             }
         });
 
-        jLblDadosAviao.setText("Avião");
-
         JBtnExcluir.setText("Excluir");
         JBtnExcluir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 JBtnExcluirMouseClicked(evt);
+            }
+        });
+        JBtnExcluir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                JBtnExcluirActionPerformed(evt);
             }
         });
 
@@ -331,84 +287,71 @@ public class Radar extends javax.swing.JFrame {
         jPnDadosAviaoLayout.setHorizontalGroup(
             jPnDadosAviaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPnDadosAviaoLayout.createSequentialGroup()
-                .addGap(210, 210, 210)
-                .addComponent(jLblDadosAviao)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPnDadosAviaoLayout.createSequentialGroup()
-                .addContainerGap(14, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPnDadosAviaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPnDadosAviaoLayout.createSequentialGroup()
+                    .addGroup(jPnDadosAviaoLayout.createSequentialGroup()
+                        .addGroup(jPnDadosAviaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPnDadosAviaoLayout.createSequentialGroup()
+                                .addComponent(jLblRaio)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(jPnDadosAviaoLayout.createSequentialGroup()
+                                .addComponent(jLblX)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jTxtX, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPnDadosAviaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPnDadosAviaoLayout.createSequentialGroup()
+                                .addComponent(jLblY)
+                                .addGap(27, 27, 27))
+                            .addComponent(jLblAngulo1, javax.swing.GroupLayout.Alignment.TRAILING))
+                        .addGap(28, 28, 28)
+                        .addGroup(jPnDadosAviaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jTxtY, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTxtAngulo, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jTxtDirecao, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(jPnDadosAviaoLayout.createSequentialGroup()
                         .addGroup(jPnDadosAviaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jTxtRaio, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPnDadosAviaoLayout.createSequentialGroup()
                                 .addComponent(jLblVelocidade)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTxtVelocidade, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPnDadosAviaoLayout.createSequentialGroup()
-                                .addComponent(jLblRaio)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTxtRaio, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPnDadosAviaoLayout.createSequentialGroup()
-                                .addComponent(jLblX)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTxtX, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18)
-                        .addGroup(jPnDadosAviaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPnDadosAviaoLayout.createSequentialGroup()
-                                .addGap(41, 41, 41)
-                                .addComponent(jLblY)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTxtY, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPnDadosAviaoLayout.createSequentialGroup()
-                                .addComponent(jLblAngulo)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTxtAngulo, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPnDadosAviaoLayout.createSequentialGroup()
-                                .addComponent(jLblAngulo1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTxtDirecao, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addComponent(jTxtVelocidade, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                        .addComponent(jLblAngulo)
+                        .addGap(142, 142, 142))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPnDadosAviaoLayout.createSequentialGroup()
-                        .addComponent(JBtnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jBtnSalvarAviao, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(JBtnExcluir)
+                        .addGap(8, 8, 8)
+                        .addComponent(jBtnSalvarAviao)
+                        .addContainerGap())))
         );
         jPnDadosAviaoLayout.setVerticalGroup(
             jPnDadosAviaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPnDadosAviaoLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLblDadosAviao)
+                .addGap(12, 12, 12)
+                .addGroup(jPnDadosAviaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLblX)
+                    .addComponent(jTxtX, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLblY)
+                    .addComponent(jTxtY, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(21, 21, 21)
-                .addGroup(jPnDadosAviaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPnDadosAviaoLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 3, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLblY))
-                    .addGroup(jPnDadosAviaoLayout.createSequentialGroup()
-                        .addGroup(jPnDadosAviaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPnDadosAviaoLayout.createSequentialGroup()
-                                .addGroup(jPnDadosAviaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                    .addComponent(jLblX)
-                                    .addComponent(jTxtX, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPnDadosAviaoLayout.createSequentialGroup()
-                                .addComponent(jTxtY, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(5, 5, 5)))
-                        .addGroup(jPnDadosAviaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLblRaio)
-                            .addGroup(jPnDadosAviaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jTxtRaio, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLblAngulo)
-                                .addComponent(jTxtAngulo, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPnDadosAviaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jTxtVelocidade, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLblVelocidade)
-                            .addComponent(jLblAngulo1)
-                            .addComponent(jTxtDirecao, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPnDadosAviaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jBtnSalvarAviao, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(JBtnExcluir, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(137, Short.MAX_VALUE))
+                .addGroup(jPnDadosAviaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLblRaio)
+                    .addComponent(jTxtRaio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLblAngulo)
+                    .addComponent(jTxtAngulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19)
+                .addGroup(jPnDadosAviaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLblVelocidade)
+                    .addComponent(jTxtVelocidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLblAngulo1)
+                    .addComponent(jTxtDirecao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, Short.MAX_VALUE)
+                .addGroup(jPnDadosAviaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jBtnSalvarAviao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(JBtnExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout jPnEntradaDadosLayout = new javax.swing.GroupLayout(jPnEntradaDados);
@@ -418,19 +361,19 @@ public class Radar extends javax.swing.JFrame {
             .addGroup(jPnEntradaDadosLayout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPnDadosAviao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(585, Short.MAX_VALUE))
+                .addContainerGap(836, Short.MAX_VALUE))
         );
         jPnEntradaDadosLayout.setVerticalGroup(
             jPnEntradaDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPnEntradaDadosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPnDadosAviao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+                .addComponent(jPnDadosAviao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(16, Short.MAX_VALUE))
         );
 
         jTabOperacoesAvioes.addTab("Entrada de dados", jPnEntradaDados);
 
-        jPnTranslandar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPnTranslandar.setBorder(javax.swing.BorderFactory.createTitledBorder("Translandar"));
         jPnTranslandar.setPreferredSize(new java.awt.Dimension(230, 300));
 
         jLblTranslandarX.setText("X:");
@@ -442,58 +385,47 @@ public class Radar extends javax.swing.JFrame {
         jTxtYTranslandar.setPreferredSize(new java.awt.Dimension(20, 23));
 
         jBtnTranslandar.setText("Translandar");
+        jBtnTranslandar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jBtnTranslandar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jBtnTranslandarMouseClicked(evt);
             }
         });
 
-        jLblTranslandar.setText("Translandar");
-
         javax.swing.GroupLayout jPnTranslandarLayout = new javax.swing.GroupLayout(jPnTranslandar);
         jPnTranslandar.setLayout(jPnTranslandarLayout);
         jPnTranslandarLayout.setHorizontalGroup(
             jPnTranslandarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPnTranslandarLayout.createSequentialGroup()
-                .addGroup(jPnTranslandarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPnTranslandarLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(jPnTranslandarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPnTranslandarLayout.createSequentialGroup()
-                                .addComponent(jLblTranslandarX)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTxtXTranslandar, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPnTranslandarLayout.createSequentialGroup()
-                                .addComponent(jLblTranslandarY)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTxtYTranslandar, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPnTranslandarLayout.createSequentialGroup()
-                        .addGap(79, 79, 79)
-                        .addComponent(jLblTranslandar))
-                    .addGroup(jPnTranslandarLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jBtnTranslandar, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(jPnTranslandarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPnTranslandarLayout.createSequentialGroup()
+                        .addComponent(jLblTranslandarY)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTxtYTranslandar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPnTranslandarLayout.createSequentialGroup()
+                        .addComponent(jLblTranslandarX)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTxtXTranslandar, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jBtnTranslandar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(24, Short.MAX_VALUE))
         );
         jPnTranslandarLayout.setVerticalGroup(
             jPnTranslandarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPnTranslandarLayout.createSequentialGroup()
-                .addGap(9, 9, 9)
-                .addComponent(jLblTranslandar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPnTranslandarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTxtXTranslandar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22)
+                .addGroup(jPnTranslandarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTxtXTranslandar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLblTranslandarX, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPnTranslandarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTxtYTranslandar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLblTranslandarY, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
+                .addGroup(jPnTranslandarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLblTranslandarY, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTxtYTranslandar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jBtnTranslandar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jBtnTranslandar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jPnEscalonar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPnEscalonar.setBorder(javax.swing.BorderFactory.createTitledBorder("Escalonar"));
         jPnEscalonar.setPreferredSize(new java.awt.Dimension(230, 300));
 
         jTxtXEscalonar.setPreferredSize(new java.awt.Dimension(20, 23));
@@ -505,61 +437,49 @@ public class Radar extends javax.swing.JFrame {
         jTxtYEscalonar.setPreferredSize(new java.awt.Dimension(20, 23));
 
         jBtnEscalonar.setText("Escalonar");
+        jBtnEscalonar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jBtnEscalonar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jBtnEscalonarMouseClicked(evt);
             }
         });
 
-        jLblEscalonar.setText("Escalonar");
-
         javax.swing.GroupLayout jPnEscalonarLayout = new javax.swing.GroupLayout(jPnEscalonar);
         jPnEscalonar.setLayout(jPnEscalonarLayout);
         jPnEscalonarLayout.setHorizontalGroup(
             jPnEscalonarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPnEscalonarLayout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPnEscalonarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPnEscalonarLayout.createSequentialGroup()
-                        .addContainerGap()
                         .addGroup(jPnEscalonarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLblEscalonarX)
                             .addGroup(jPnEscalonarLayout.createSequentialGroup()
                                 .addComponent(jLblEscalonarY)
                                 .addGap(1, 1, 1)))
-                        .addGroup(jPnEscalonarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPnEscalonarLayout.createSequentialGroup()
-                                .addGap(7, 7, 7)
-                                .addComponent(jTxtXEscalonar, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPnEscalonarLayout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jTxtYEscalonar, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(jPnEscalonarLayout.createSequentialGroup()
-                        .addGap(84, 84, 84)
-                        .addComponent(jLblEscalonar))
-                    .addGroup(jPnEscalonarLayout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(jBtnEscalonar, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(14, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPnEscalonarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jTxtXEscalonar, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
+                            .addComponent(jTxtYEscalonar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addComponent(jBtnEscalonar, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
         jPnEscalonarLayout.setVerticalGroup(
             jPnEscalonarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPnEscalonarLayout.createSequentialGroup()
-                .addGap(9, 9, 9)
-                .addComponent(jLblEscalonar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPnEscalonarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTxtXEscalonar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(22, 22, 22)
+                .addGroup(jPnEscalonarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTxtXEscalonar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLblEscalonarX, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPnEscalonarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLblEscalonarY, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTxtYEscalonar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPnEscalonarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jTxtYEscalonar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLblEscalonarY, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jBtnEscalonar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addComponent(jBtnEscalonar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
-        jPnRotacionar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jPnRotacionar.setBorder(javax.swing.BorderFactory.createTitledBorder("Rotacionar"));
         jPnRotacionar.setPreferredSize(new java.awt.Dimension(230, 300));
 
         jLblAnguloRotacionar.setText("Ângulo:");
@@ -577,13 +497,12 @@ public class Radar extends javax.swing.JFrame {
         jLblRotacionarY.setText("Y:");
 
         jBtnRotacionar.setText("Rotacionar");
+        jBtnRotacionar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jBtnRotacionar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jBtnRotacionarMouseClicked(evt);
             }
         });
-
-        jLblRotacionar.setText("Rotacionar");
 
         javax.swing.GroupLayout jPnRotacionarLayout = new javax.swing.GroupLayout(jPnRotacionar);
         jPnRotacionar.setLayout(jPnRotacionarLayout);
@@ -593,54 +512,47 @@ public class Radar extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(jPnRotacionarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPnRotacionarLayout.createSequentialGroup()
-                        .addGroup(jPnRotacionarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(jPnRotacionarLayout.createSequentialGroup()
-                                .addGroup(jPnRotacionarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(jLblRotacionarX)
-                                    .addComponent(jLblRotacionarY))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPnRotacionarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(jPnRotacionarLayout.createSequentialGroup()
-                                        .addGap(1, 1, 1)
-                                        .addComponent(jTxtXRotacionar, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addComponent(jTxtYRotacionar, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                            .addGroup(jPnRotacionarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addGroup(jPnRotacionarLayout.createSequentialGroup()
-                                    .addComponent(jLblAnguloRotacionar)
-                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                    .addComponent(jTxtAnguloRotacionar, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addComponent(jLblCentroRotacao))
-                            .addGroup(jPnRotacionarLayout.createSequentialGroup()
-                                .addComponent(jBtnRotacionar, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(1, 1, 1)))
-                        .addContainerGap(17, Short.MAX_VALUE))
+                        .addComponent(jLblCentroRotacao)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPnRotacionarLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLblRotacionar)
-                        .addGap(85, 85, 85))))
+                        .addGap(0, 4, Short.MAX_VALUE)
+                        .addGroup(jPnRotacionarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPnRotacionarLayout.createSequentialGroup()
+                                .addComponent(jLblRotacionarY)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTxtYRotacionar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPnRotacionarLayout.createSequentialGroup()
+                                .addComponent(jLblRotacionarX)
+                                .addGap(18, 18, 18)
+                                .addComponent(jTxtXRotacionar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPnRotacionarLayout.createSequentialGroup()
+                                .addComponent(jLblAnguloRotacionar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jTxtAnguloRotacionar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(25, 25, 25))
+                    .addGroup(jPnRotacionarLayout.createSequentialGroup()
+                        .addComponent(jBtnRotacionar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
         jPnRotacionarLayout.setVerticalGroup(
             jPnRotacionarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPnRotacionarLayout.createSequentialGroup()
-                .addGap(9, 9, 9)
-                .addComponent(jLblRotacionar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addContainerGap()
                 .addGroup(jPnRotacionarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLblAnguloRotacionar)
-                    .addComponent(jTxtAnguloRotacionar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jTxtAnguloRotacionar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLblAnguloRotacionar))
                 .addGap(18, 18, 18)
                 .addComponent(jLblCentroRotacao)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPnRotacionarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTxtXRotacionar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTxtXRotacionar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLblRotacionarX, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPnRotacionarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jTxtYRotacionar, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jTxtYRotacionar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLblRotacionarY, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 109, Short.MAX_VALUE)
-                .addComponent(jBtnRotacionar, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 21, Short.MAX_VALUE)
+                .addComponent(jBtnRotacionar, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout jPnFuncoesTransformacaoLayout = new javax.swing.GroupLayout(jPnFuncoesTransformacao);
@@ -653,17 +565,17 @@ public class Radar extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jPnEscalonar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jPnRotacionar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(364, Short.MAX_VALUE))
+                .addComponent(jPnRotacionar, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(445, Short.MAX_VALUE))
         );
         jPnFuncoesTransformacaoLayout.setVerticalGroup(
             jPnFuncoesTransformacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPnFuncoesTransformacaoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPnFuncoesTransformacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPnEscalonar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE)
-                    .addComponent(jPnTranslandar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE)
-                    .addComponent(jPnRotacionar, javax.swing.GroupLayout.DEFAULT_SIZE, 337, Short.MAX_VALUE))
+                    .addComponent(jPnEscalonar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+                    .addComponent(jPnRotacionar, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+                    .addComponent(jPnTranslandar, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -673,44 +585,104 @@ public class Radar extends javax.swing.JFrame {
 
         jTabOperacoesAvioes.addTab("Funções de Transformação", jPnFuncoesTransformacao);
 
-        javax.swing.GroupLayout jPnOperacoesAvioesLayout = new javax.swing.GroupLayout(jPnOperacoesAvioes);
-        jPnOperacoesAvioes.setLayout(jPnOperacoesAvioesLayout);
-        jPnOperacoesAvioesLayout.setHorizontalGroup(
-            jPnOperacoesAvioesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabOperacoesAvioes)
-        );
-        jPnOperacoesAvioesLayout.setVerticalGroup(
-            jPnOperacoesAvioesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabOperacoesAvioes)
-        );
+        jPnRadar.add(jTabOperacoesAvioes);
+        jTabOperacoesAvioes.setBounds(0, 370, 1180, 260);
+
+        jPnAvioes.setBorder(javax.swing.BorderFactory.createTitledBorder("Aviões"));
+
+        jTbAvioes.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Visualizar", "Código", "Modelo", "X", "Y", "Raio", "Ângulo", "Velocidade", "Direção"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                true, false, false, false, false, false, false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jTbAvioes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTbAvioesMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(jTbAvioes);
 
         javax.swing.GroupLayout jPnAvioesLayout = new javax.swing.GroupLayout(jPnAvioes);
         jPnAvioes.setLayout(jPnAvioesLayout);
         jPnAvioesLayout.setHorizontalGroup(
             jPnAvioesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1)
-            .addComponent(jPnOperacoesAvioes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPnAvioesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 628, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPnAvioesLayout.setVerticalGroup(
             jPnAvioesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPnAvioesLayout.createSequentialGroup()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 122, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPnOperacoesAvioes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPnAvioesLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19))
+        );
+
+        jPnRadar.add(jPnAvioes);
+        jPnAvioes.setBounds(520, 0, 660, 180);
+
+        jPnRelatorio.setBorder(javax.swing.BorderFactory.createTitledBorder("Relatório"));
+
+        jListRelatorio.setModel(new javax.swing.AbstractListModel<String>() {
+            String[] strings = { "Avião adicionado" };
+            public int getSize() { return strings.length; }
+            public String getElementAt(int i) { return strings[i]; }
+        });
+        jScrollPane2.setViewportView(jListRelatorio);
+
+        javax.swing.GroupLayout jPnRelatorioLayout = new javax.swing.GroupLayout(jPnRelatorio);
+        jPnRelatorio.setLayout(jPnRelatorioLayout);
+        jPnRelatorioLayout.setHorizontalGroup(
+            jPnRelatorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPnRelatorioLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 628, Short.MAX_VALUE)
+                .addContainerGap())
+        );
+        jPnRelatorioLayout.setVerticalGroup(
+            jPnRelatorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPnRelatorioLayout.createSequentialGroup()
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 126, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
-        jTabAvioes.addTab("Aviões", jPnAvioes);
+        jPnRadar.add(jPnRelatorio);
+        jPnRelatorio.setBounds(520, 190, 660, 160);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabAvioes)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPnRadar, javax.swing.GroupLayout.DEFAULT_SIZE, 1180, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabAvioes)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPnRadar, javax.swing.GroupLayout.DEFAULT_SIZE, 636, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -722,10 +694,20 @@ public class Radar extends javax.swing.JFrame {
     }//GEN-LAST:event_jBtnSalvarAviaoActionPerformed
 
     private void jBtnSalvarAviaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBtnSalvarAviaoMouseClicked
-        inserirOuEditarAviao();
-        limparCampos();
-        recarregarAvioes();
-        recarregarAvioesNoRadar();
+        
+        if ((!jTxtX.getText().isEmpty()) && (!jTxtY.getText().isEmpty()) 
+                && (!jTxtRaio.getText().isEmpty()) && (!jTxtAngulo.getText().isEmpty())
+                && (!jTxtVelocidade.getText().isEmpty()) && (!jTxtDirecao.getText().isEmpty())){
+        
+            inserirOuEditarAviao();
+            limparCampos();
+            recarregarAvioes();
+            recarregarAvioesNoRadar();
+        
+        }else{
+          JOptionPane.showMessageDialog(null, "Informe todos os dados");  
+        }
+            
     }//GEN-LAST:event_jBtnSalvarAviaoMouseClicked
 
     private void jTbAvioesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTbAvioesMouseClicked
@@ -752,22 +734,70 @@ public class Radar extends javax.swing.JFrame {
     }//GEN-LAST:event_JBtnExcluirMouseClicked
 
     private void jBtnTranslandarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBtnTranslandarMouseClicked
-        UtilFuncoesTransformacao.translandar(getAviaoSelecionado(), getCoordenadaTranslacao());
-        limparCamposDadosTranslacao();
-        recarregarAvioes();
+        
+        if (this.idAviaoSelecionado != null){
+            
+            if ((!jTxtXTranslandar.getText().isEmpty()) && (!jTxtYTranslandar.getText().isEmpty())) {
+                UtilFuncoesTransformacao.translandar(getAviaoSelecionado(), getCoordenadaTranslacao());
+                limparCamposDadosTranslacao();
+                recarregarAvioes();
+            }else{
+                JOptionPane.showMessageDialog(null, "Informe todos os dados");
+            }
+            
+        }else{
+            JOptionPane.showMessageDialog(null, "Selecione um avião para translandar");
+        }
+        
     }//GEN-LAST:event_jBtnTranslandarMouseClicked
 
     private void jBtnEscalonarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBtnEscalonarMouseClicked
-        UtilFuncoesTransformacao.escalonar(getAviaoSelecionado(), getCoordenadaEscalonamento());
-        limparCamposDadosEscalonamento();
-        recarregarAvioes();
+        
+        if (this.idAviaoSelecionado != null){
+            
+            if ((!jTxtXEscalonar.getText().isEmpty()) && (!jTxtYEscalonar.getText().isEmpty())) {
+                UtilFuncoesTransformacao.escalonar(getAviaoSelecionado(), getCoordenadaEscalonamento());
+                limparCamposDadosEscalonamento();
+                recarregarAvioes();
+            }else{
+                JOptionPane.showMessageDialog(null, "Informe todos os dados");
+            }
+            
+        }else{
+            JOptionPane.showMessageDialog(null, "Selecione um avião para escalonar");
+        }
+        
+   
     }//GEN-LAST:event_jBtnEscalonarMouseClicked
 
     private void jBtnRotacionarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBtnRotacionarMouseClicked
-        UtilFuncoesTransformacao.rotacionar(getAviaoSelecionado(), getCoordenadaRotacao());
-        limparCamposDadosRotacao();
-        recarregarAvioes();
+        
+         if (this.idAviaoSelecionado != null){
+            
+            if ((!jTxtXRotacionar.getText().isEmpty()) && (!jTxtYRotacionar.getText().isEmpty())) {
+                UtilFuncoesTransformacao.rotacionar(getAviaoSelecionado(), getCoordenadaRotacao());
+                limparCamposDadosRotacao();
+                recarregarAvioes();
+            }else{
+                JOptionPane.showMessageDialog(null, "Informe todos os dados");
+            }
+            
+        }else{
+            JOptionPane.showMessageDialog(null, "Selecione um avião para rotacionar");
+        }
+        
+        
+        
+        
     }//GEN-LAST:event_jBtnRotacionarMouseClicked
+
+    private void jTxtXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtXActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTxtXActionPerformed
+
+    private void JBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBtnExcluirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_JBtnExcluirActionPerformed
 
     /**
      * @param args the command line arguments
@@ -814,16 +844,11 @@ public class Radar extends javax.swing.JFrame {
     private javax.swing.JLabel jLblAngulo1;
     private javax.swing.JLabel jLblAnguloRotacionar;
     private javax.swing.JLabel jLblCentroRotacao;
-    private javax.swing.JLabel jLblDadosAviao;
-    private javax.swing.JLabel jLblEscalonar;
     private javax.swing.JLabel jLblEscalonarX;
     private javax.swing.JLabel jLblEscalonarY;
     private javax.swing.JLabel jLblRaio;
-    private javax.swing.JLabel jLblRelatorio;
-    private javax.swing.JLabel jLblRotacionar;
     private javax.swing.JLabel jLblRotacionarX;
     private javax.swing.JLabel jLblRotacionarY;
-    private javax.swing.JLabel jLblTranslandar;
     private javax.swing.JLabel jLblTranslandarX;
     private javax.swing.JLabel jLblTranslandarY;
     private javax.swing.JLabel jLblVelocidade;
@@ -835,14 +860,13 @@ public class Radar extends javax.swing.JFrame {
     private javax.swing.JPanel jPnEntradaDados;
     private javax.swing.JPanel jPnEscalonar;
     private javax.swing.JPanel jPnFuncoesTransformacao;
-    private javax.swing.JPanel jPnOperacoesAvioes;
     private javax.swing.JPanel jPnRadar;
     private javax.swing.JPanel jPnRadarAvioes;
+    private javax.swing.JPanel jPnRelatorio;
     private javax.swing.JPanel jPnRotacionar;
     private javax.swing.JPanel jPnTranslandar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTabbedPane jTabAvioes;
     private javax.swing.JTabbedPane jTabOperacoesAvioes;
     private javax.swing.JTable jTbAvioes;
     private javax.swing.JTextField jTxtAngulo;
