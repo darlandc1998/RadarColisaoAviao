@@ -741,6 +741,7 @@ public class Radar extends javax.swing.JFrame {
                 UtilFuncoesTransformacao.translandar(getAviaoSelecionado(), getCoordenadaTranslacao());
                 limparCamposDadosTranslacao();
                 recarregarAvioes();
+                recarregarAvioesNoRadar();
             }else{
                 JOptionPane.showMessageDialog(null, "Informe todos os dados");
             }
@@ -759,6 +760,7 @@ public class Radar extends javax.swing.JFrame {
                 UtilFuncoesTransformacao.escalonar(getAviaoSelecionado(), getCoordenadaEscalonamento());
                 limparCamposDadosEscalonamento();
                 recarregarAvioes();
+                recarregarAvioesNoRadar();
             }else{
                 JOptionPane.showMessageDialog(null, "Informe todos os dados");
             }
@@ -778,6 +780,7 @@ public class Radar extends javax.swing.JFrame {
                 UtilFuncoesTransformacao.rotacionar(getAviaoSelecionado(), getCoordenadaRotacao());
                 limparCamposDadosRotacao();
                 recarregarAvioes();
+                recarregarAvioesNoRadar();
             }else{
                 JOptionPane.showMessageDialog(null, "Informe todos os dados");
             }
