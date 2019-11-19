@@ -1,6 +1,9 @@
 package utils;
 
+import java.awt.Component;
 import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.RenderingHints;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import modelos.Aviao;
@@ -14,21 +17,25 @@ public final class UtilComponentes {
     private static final String URL_IMAGEM = "/home/darlan/Documentos/Projetos/Java/Radar Colisao Avião/src/main/java/imagens/airplane.png";
 
     public static JLabel getIconeAviao(Aviao aviao) {
-        ImageIcon icone = new ImageIcon(URL_IMAGEM);
-        
-        JLabel iconeAviao = new JLabel(icone){            
+        ImageIcon icone = new ImageIcon(URL_IMAGEM) {
             
             @Override
-            protected void paintComponent(Graphics g) {
-                /*Graphics2D gx = (Graphics2D) g;
-                gx.rotate(0.1);*/ //Rotaciona a imagem (Ficou a bela de uma bosta)
-                super.paintComponent(g);
+            public synchronized void paintIcon(Component c, Graphics g, int x, int y) {
+                //Parte responsavel por rotacionar os aviões;
+                Graphics2D g2 = (Graphics2D) g;
+                g2.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+                g2.setRenderingHint(RenderingHints.KEY_RENDERING, RenderingHints.VALUE_RENDER_QUALITY);
+                g2.translate(getIconWidth() / 2, getIconHeight() / 2);
+                g2.rotate(Math.toRadians(aviao.getAngulo()));
+                g2.translate(-getIconWidth() / 2, -getIconHeight() / 2);
+                super.paintIcon(c, g, x, y);
             }
-            
+
         };
-        
+
+        JLabel iconeAviao = new JLabel(icone);
         iconeAviao.setBounds(getXCoordinate(aviao), getYCoordinate(aviao), 24, 24); // Localização do avião nos eixos x e y;             
-        
+
         return iconeAviao;
     }
 
