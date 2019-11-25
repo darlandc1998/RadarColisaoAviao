@@ -17,6 +17,7 @@ public class Radar extends javax.swing.JFrame {
 
     public Radar() {
         initComponents();
+        recarregarAvioesNoRadar();
     }
 
     private void inserirOuEditarAviao() {
@@ -154,6 +155,8 @@ public class Radar extends javax.swing.JFrame {
             }
         }
 
+        jPnRadarAvioes.add(UtilComponentes.getRadar());
+        
         jPnRadarAvioes.validate();
         jPnRadarAvioes.repaint();
     }
@@ -217,15 +220,16 @@ public class Radar extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Radar");
-        setPreferredSize(new java.awt.Dimension(1200, 700));
         setResizable(false);
 
         jPnRadar.setLayout(null);
 
+        jPnRadarAvioes.setBackground(new java.awt.Color(0, 0, 0));
         jPnRadarAvioes.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jPnRadarAvioes.setMinimumSize(new java.awt.Dimension(420, 420));
         jPnRadarAvioes.setLayout(null);
         jPnRadar.add(jPnRadarAvioes);
-        jPnRadarAvioes.setBounds(10, 10, 470, 340);
+        jPnRadarAvioes.setBounds(10, 10, 420, 340);
 
         jPnDadosAviao.setBorder(javax.swing.BorderFactory.createTitledBorder("Adicionar avião"));
 
@@ -259,6 +263,7 @@ public class Radar extends javax.swing.JFrame {
         jTxtDirecao.setPreferredSize(new java.awt.Dimension(120, 25));
 
         jBtnSalvarAviao.setText("Salvar");
+        jBtnSalvarAviao.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jBtnSalvarAviao.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jBtnSalvarAviaoMouseClicked(evt);
@@ -271,6 +276,7 @@ public class Radar extends javax.swing.JFrame {
         });
 
         JBtnExcluir.setText("Excluir");
+        JBtnExcluir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         JBtnExcluir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 JBtnExcluirMouseClicked(evt);
@@ -348,10 +354,10 @@ public class Radar extends javax.swing.JFrame {
                     .addComponent(jTxtVelocidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLblAngulo1)
                     .addComponent(jTxtDirecao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, Short.MAX_VALUE)
+                .addGap(18, 37, Short.MAX_VALUE)
                 .addGroup(jPnDadosAviaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jBtnSalvarAviao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(JBtnExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)))
+                    .addComponent(JBtnExcluir, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBtnSalvarAviao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout jPnEntradaDadosLayout = new javax.swing.GroupLayout(jPnEntradaDados);
@@ -367,8 +373,8 @@ public class Radar extends javax.swing.JFrame {
             jPnEntradaDadosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPnEntradaDadosLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jPnDadosAviao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addComponent(jPnDadosAviao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         jTabOperacoesAvioes.addTab("Entrada de dados", jPnEntradaDados);
@@ -385,7 +391,7 @@ public class Radar extends javax.swing.JFrame {
         jTxtYTranslandar.setPreferredSize(new java.awt.Dimension(20, 23));
 
         jBtnTranslandar.setText("Translandar");
-        jBtnTranslandar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jBtnTranslandar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jBtnTranslandar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jBtnTranslandarMouseClicked(evt);
@@ -437,7 +443,7 @@ public class Radar extends javax.swing.JFrame {
         jTxtYEscalonar.setPreferredSize(new java.awt.Dimension(20, 23));
 
         jBtnEscalonar.setText("Escalonar");
-        jBtnEscalonar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jBtnEscalonar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jBtnEscalonar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jBtnEscalonarMouseClicked(evt);
@@ -462,7 +468,7 @@ public class Radar extends javax.swing.JFrame {
                             .addComponent(jTxtXEscalonar, javax.swing.GroupLayout.DEFAULT_SIZE, 170, Short.MAX_VALUE)
                             .addComponent(jTxtYEscalonar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                     .addComponent(jBtnEscalonar, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
         jPnEscalonarLayout.setVerticalGroup(
             jPnEscalonarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -497,7 +503,7 @@ public class Radar extends javax.swing.JFrame {
         jLblRotacionarY.setText("Y:");
 
         jBtnRotacionar.setText("Rotacionar");
-        jBtnRotacionar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jBtnRotacionar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jBtnRotacionar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jBtnRotacionarMouseClicked(evt);
@@ -515,7 +521,7 @@ public class Radar extends javax.swing.JFrame {
                         .addComponent(jLblCentroRotacao)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPnRotacionarLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGap(0, 4, Short.MAX_VALUE)
                         .addGroup(jPnRotacionarLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPnRotacionarLayout.createSequentialGroup()
                                 .addComponent(jLblRotacionarY)
@@ -573,9 +579,9 @@ public class Radar extends javax.swing.JFrame {
             .addGroup(jPnFuncoesTransformacaoLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPnFuncoesTransformacaoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPnEscalonar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
-                    .addComponent(jPnRotacionar, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE)
-                    .addComponent(jPnTranslandar, javax.swing.GroupLayout.DEFAULT_SIZE, 223, Short.MAX_VALUE))
+                    .addComponent(jPnEscalonar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+                    .addComponent(jPnRotacionar, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+                    .addComponent(jPnTranslandar, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE))
                 .addContainerGap())
         );
 
@@ -619,6 +625,17 @@ public class Radar extends javax.swing.JFrame {
             }
         });
         jScrollPane1.setViewportView(jTbAvioes);
+        if (jTbAvioes.getColumnModel().getColumnCount() > 0) {
+            jTbAvioes.getColumnModel().getColumn(0).setResizable(false);
+            jTbAvioes.getColumnModel().getColumn(1).setResizable(false);
+            jTbAvioes.getColumnModel().getColumn(2).setResizable(false);
+            jTbAvioes.getColumnModel().getColumn(3).setResizable(false);
+            jTbAvioes.getColumnModel().getColumn(4).setResizable(false);
+            jTbAvioes.getColumnModel().getColumn(5).setResizable(false);
+            jTbAvioes.getColumnModel().getColumn(6).setResizable(false);
+            jTbAvioes.getColumnModel().getColumn(7).setResizable(false);
+            jTbAvioes.getColumnModel().getColumn(8).setResizable(false);
+        }
 
         javax.swing.GroupLayout jPnAvioesLayout = new javax.swing.GroupLayout(jPnAvioes);
         jPnAvioes.setLayout(jPnAvioesLayout);
@@ -626,7 +643,7 @@ public class Radar extends javax.swing.JFrame {
             jPnAvioesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPnAvioesLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 628, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 648, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPnAvioesLayout.setVerticalGroup(
@@ -638,7 +655,7 @@ public class Radar extends javax.swing.JFrame {
         );
 
         jPnRadar.add(jPnAvioes);
-        jPnAvioes.setBounds(520, 0, 660, 180);
+        jPnAvioes.setBounds(490, 0, 680, 180);
 
         jPnRelatorio.setBorder(javax.swing.BorderFactory.createTitledBorder("Relatório"));
 
@@ -655,7 +672,7 @@ public class Radar extends javax.swing.JFrame {
             jPnRelatorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPnRelatorioLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 628, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 648, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPnRelatorioLayout.setVerticalGroup(
@@ -666,7 +683,7 @@ public class Radar extends javax.swing.JFrame {
         );
 
         jPnRadar.add(jPnRelatorio);
-        jPnRelatorio.setBounds(520, 190, 660, 160);
+        jPnRelatorio.setBounds(490, 190, 680, 160);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -813,7 +830,7 @@ public class Radar extends javax.swing.JFrame {
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
+                if ("Windows".equals(info.getName())) {
                     javax.swing.UIManager.setLookAndFeel(info.getClassName());
                     break;
                 }

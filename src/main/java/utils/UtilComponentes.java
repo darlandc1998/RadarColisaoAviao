@@ -10,12 +10,20 @@ import modelos.Aviao;
 
 public final class UtilComponentes {
 
-    public static final Integer WIDTH_PANEL = 470;
+    public static final Integer WIDTH_PANEL = 420;
     public static final Integer HEIGHT_PANEL = 340;
 
     //Quando for usar alterar esse caminho conforme o do pc utilizado
-    private static final String URL_IMAGEM = "/home/darlan/Documentos/Projetos/Java/Radar Colisao Avião/src/main/java/imagens/airplane.png";
-
+    private static final String URL_IMAGEM = "C:\\Users\\lab102a\\Documents\\NetBeansProjects\\RadarColisaoAviao\\src\\main\\java\\imagens\\airplane.png";
+    private static final String URL_RADAR = "C:\\Users\\lab102a\\Documents\\NetBeansProjects\\RadarColisaoAviao\\src\\main\\java\\imagens\\radar3.gif";
+    
+    public static JLabel getRadar(){
+        ImageIcon icone = new ImageIcon(URL_RADAR);
+        JLabel radar = new JLabel(icone);
+        radar.setBounds(0, 0, 420, 340);
+        return radar;
+    }
+    
     public static JLabel getIconeAviao(Aviao aviao) {
         ImageIcon icone = new ImageIcon(URL_IMAGEM) {
             
