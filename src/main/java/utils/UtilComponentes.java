@@ -14,8 +14,8 @@ public final class UtilComponentes {
     public static final Integer HEIGHT_PANEL = 340;
 
     //Quando for usar alterar esse caminho conforme o do pc utilizado
-    private static final String URL_IMAGEM = "C:\\Users\\lab102a\\Documents\\NetBeansProjects\\RadarColisaoAviao\\src\\main\\java\\imagens\\airplane.png";
-    private static final String URL_RADAR = "C:\\Users\\lab102a\\Documents\\NetBeansProjects\\RadarColisaoAviao\\src\\main\\java\\imagens\\radar3.gif";
+    private static final String URL_IMAGEM = "/home/darlan/Documentos/Projetos/Java/Radar Colisao Avião/src/main/java/imagens/airplane.png";
+    private static final String URL_RADAR = "/home/darlan/Documentos/Projetos/Java/Radar Colisao Avião/src/main/java/imagens/radar2.gif";
     
     public static JLabel getRadar(){
         ImageIcon icone = new ImageIcon(URL_RADAR);

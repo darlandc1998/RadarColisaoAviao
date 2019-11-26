@@ -292,7 +292,7 @@
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Salvar"/>
                         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                          <Color id="Cursor em Forma de M&#xe3;o"/>
+                          <Color id="Default Cursor"/>
                         </Property>
                       </Properties>
                       <Events>
@@ -304,7 +304,7 @@
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Excluir"/>
                         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                          <Color id="Cursor em Forma de M&#xe3;o"/>
+                          <Color id="Default Cursor"/>
                         </Property>
                       </Properties>
                       <Events>
@@ -344,9 +344,9 @@
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="jPnEscalonar" alignment="1" pref="210" max="32767" attributes="0"/>
-                              <Component id="jPnRotacionar" alignment="0" pref="210" max="32767" attributes="0"/>
-                              <Component id="jPnTranslandar" alignment="0" pref="210" max="32767" attributes="0"/>
+                              <Component id="jPnEscalonar" alignment="1" pref="223" max="32767" attributes="0"/>
+                              <Component id="jPnRotacionar" alignment="0" pref="223" max="32767" attributes="0"/>
+                              <Component id="jPnTranslandar" alignment="0" pref="223" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                       </Group>
@@ -439,7 +439,7 @@
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Translandar"/>
                         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                          <Color id="Cursor em Forma de M&#xe3;o"/>
+                          <Color id="Default Cursor"/>
                         </Property>
                       </Properties>
                       <Events>
@@ -485,7 +485,7 @@
                                   </Group>
                                   <Component id="jBtnEscalonar" alignment="0" min="-2" pref="187" max="-2" attributes="0"/>
                               </Group>
-                              <EmptySpace pref="17" max="32767" attributes="0"/>
+                              <EmptySpace pref="18" max="32767" attributes="0"/>
                           </Group>
                       </Group>
                     </DimensionLayout>
@@ -537,7 +537,7 @@
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Escalonar"/>
                         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                          <Color id="Cursor em Forma de M&#xe3;o"/>
+                          <Color id="Default Cursor"/>
                         </Property>
                       </Properties>
                       <Events>
@@ -572,7 +572,7 @@
                                       <EmptySpace max="32767" attributes="0"/>
                                   </Group>
                                   <Group type="102" alignment="1" attributes="0">
-                                      <EmptySpace min="0" pref="4" max="32767" attributes="0"/>
+                                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                                       <Group type="103" groupAlignment="0" attributes="0">
                                           <Group type="102" alignment="1" attributes="0">
                                               <Component id="jLblRotacionarY" min="-2" max="-2" attributes="0"/>
@@ -672,7 +672,7 @@
                       <Properties>
                         <Property name="text" type="java.lang.String" value="Rotacionar"/>
                         <Property name="cursor" type="java.awt.Cursor" editor="org.netbeans.modules.form.editors2.CursorEditor">
-                          <Color id="Cursor em Forma de M&#xe3;o"/>
+                          <Color id="Default Cursor"/>
                         </Property>
                       </Properties>
                       <Events>

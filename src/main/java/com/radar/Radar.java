@@ -2,22 +2,29 @@ package com.radar;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import modelos.Aviao;
+import modelos.Colisao;
 import modelos.Coordenada;
 import utils.UtilAviao;
 import utils.UtilComponentes;
+import utils.UtilFuncoesColisao;
 import utils.UtilFuncoesTransformacao;
 
 public class Radar extends javax.swing.JFrame {
 
     private Integer idAviaoSelecionado = null;
-    private List<Aviao> avioes = new ArrayList<>();
+    private final List<Aviao> avioes = new ArrayList<>();
+    private final Colisao colisao = new Colisao();
+    private final DefaultListModel modelRelatorio = new DefaultListModel();
 
     public Radar() {
         initComponents();
-        recarregarAvioesNoRadar();
+        recarregarAvioesNoRadar();        
+        
+        jListRelatorio.setModel(modelRelatorio);        
     }
 
     private void inserirOuEditarAviao() {
@@ -28,8 +35,10 @@ public class Radar extends javax.swing.JFrame {
         String txtVelocidade = jTxtVelocidade.getText();
         String txtDirecao = jTxtDirecao.getText();
 
+        this.idAviaoSelecionado = this.idAviaoSelecionado != null ? this.idAviaoSelecionado : UtilAviao.getNextId(this.avioes);
+        
         Aviao aviao = new Aviao();
-        aviao.setId(this.idAviaoSelecionado != null ? this.idAviaoSelecionado : UtilAviao.getNextId(this.avioes));
+        aviao.setId(this.idAviaoSelecionado);
         aviao.setModelo("Avião " + aviao.getId());
         aviao.setX(Double.parseDouble(txtX));
         aviao.setY(Double.parseDouble(txtY));
@@ -44,7 +53,17 @@ public class Radar extends javax.swing.JFrame {
             this.avioes.set(index, aviao);
         } else {
             this.avioes.add(aviao);
-        }
+        }   
+    }
+    
+    private void inserirOuEditarDadosColisao(){
+        double disMinimaAeroporto = 0d; //Fazer pegar direto do JEditText;
+        double disMinimaAvioes = 0d; // Fazer pegar direto do JEditText;
+        Integer tempoMinimo = 0; //Fazer pegar direto do JEditText;
+        
+        this.colisao.setDisMinimaAeroporto(disMinimaAeroporto);
+        this.colisao.setDisMinimaAvioes(disMinimaAvioes);
+        this.colisao.setTempoMinimo(tempoMinimo);
     }
 
     private void excluirAviao(Integer idAviao) {
@@ -159,6 +178,16 @@ public class Radar extends javax.swing.JFrame {
         
         jPnRadarAvioes.validate();
         jPnRadarAvioes.repaint();
+    }
+    
+    private void gerarRelatorio(){
+        Aviao aviao = getAviaoSelecionado();
+        
+        if (aviao == null){
+            return;
+        }
+        
+        UtilFuncoesColisao.calcularRotasDeColisao(aviao, this.avioes, this.colisao, modelRelatorio);        
     }
 
     /**
@@ -717,6 +746,8 @@ public class Radar extends javax.swing.JFrame {
                 && (!jTxtVelocidade.getText().isEmpty()) && (!jTxtDirecao.getText().isEmpty())){
         
             inserirOuEditarAviao();
+            inserirOuEditarDadosColisao();
+            gerarRelatorio();
             limparCampos();
             recarregarAvioes();
             recarregarAvioesNoRadar();

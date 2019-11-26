@@ -1,21 +1,21 @@
 package utils;
 
-import java.util.ArrayList;
 import java.util.List;
 import javax.swing.DefaultListModel;
-import javax.swing.table.DefaultTableModel;
 import modelos.Aviao;
+import modelos.Colisao;
 
-public class UtilFuncoesColisao {
+public final class UtilFuncoesColisao {
 
-    public static List<Aviao> calculaRotasColisao(Aviao aviao, List<Aviao> avioes, DefaultListModel listaRelatorio) {
-
-        List<Aviao> avioesColisao = new ArrayList<>();
+    public static void calcularRotasDeColisao(Aviao aviao, List<Aviao> avioes, Colisao colisao, DefaultListModel listaRelatorio) {
+        listaRelatorio.addElement("");
+        listaRelatorio.addElement("");        
+        listaRelatorio.addElement("");        
+        listaRelatorio.addElement("");        
+        listaRelatorio.addElement("------ Avião " + aviao.getModelo() + " ------");
 
         for (Aviao aviaoX : avioes) {
-
             if (!aviaoX.getId().equals(aviao.getId())) {
-
                 //CALCULA COEFICIENTE ANGULAR
                 Double m1 = Math.tan(Math.toRadians(aviao.getAngulo()));
                 Double m2 = Math.tan(Math.toRadians(aviaoX.getAngulo()));
@@ -71,9 +71,8 @@ public class UtilFuncoesColisao {
                     double tempoColisao = Math.abs((tempoAviao1 - tempoAviao2));
                     System.out.println("DIFERENÇA DE TEMPO EM QUE OS AVIÕES PASSAM PELO PONTO DE ENCONTRO: " + tempoColisao + " segundos");
 
-                    if (tempoColisao <= 15) {
-                        avioesColisao.add(aviaoX);
-                        listaRelatorio.addElement("Avião " + aviao.getId() + " colisão com " + aviaoX.getId() + " em " + tempoColisao);
+                    if (tempoColisao <= colisao.getTempoMinimo()) {
+                        listaRelatorio.addElement("Avião " + aviao.getModelo() + " em colisão com " + aviaoX.getModelo() + " em " + tempoColisao + " segundos. ");
                     }
 
                 } else {
@@ -83,8 +82,10 @@ public class UtilFuncoesColisao {
             }
 
         }
+        
+        listaRelatorio.addElement("------ Análise completa ------");
+        listaRelatorio.addElement("");
 
-        return avioesColisao;
     }
 
 }
