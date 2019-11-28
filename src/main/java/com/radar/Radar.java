@@ -22,9 +22,9 @@ public class Radar extends javax.swing.JFrame {
 
     public Radar() {
         initComponents();
-        recarregarAvioesNoRadar();        
-        
-        jListRelatorio.setModel(modelRelatorio);        
+        recarregarAvioesNoRadar();
+
+        jListRelatorio.setModel(modelRelatorio);
     }
 
     private void inserirOuEditarAviao() {
@@ -36,7 +36,7 @@ public class Radar extends javax.swing.JFrame {
         String txtDirecao = jTxtDirecao.getText();
 
         this.idAviaoSelecionado = this.idAviaoSelecionado != null ? this.idAviaoSelecionado : UtilAviao.getNextId(this.avioes);
-        
+
         Aviao aviao = new Aviao();
         aviao.setId(this.idAviaoSelecionado);
         aviao.setModelo("Avião " + aviao.getId());
@@ -53,14 +53,27 @@ public class Radar extends javax.swing.JFrame {
             this.avioes.set(index, aviao);
         } else {
             this.avioes.add(aviao);
-        }   
+        }
     }
-    
-    private void inserirOuEditarDadosColisao(){
-        double disMinimaAeroporto = 0d; //Fazer pegar direto do JEditText;
-        double disMinimaAvioes = 0d; // Fazer pegar direto do JEditText;
-        Integer tempoMinimo = 0; //Fazer pegar direto do JEditText;
-        
+
+    private void inserirOuEditarDadosColisao() {
+
+        double disMinimaAeroporto = 0d;
+        double disMinimaAvioes = 0d;
+        Integer tempoMinimo = 0;
+
+        if (!jTxDistanciaMinAeroPorto.getText().isEmpty()) {
+            disMinimaAeroporto = Double.parseDouble(jTxDistanciaMinAeroPorto.getText());
+        }
+
+        if (!jTxDistanciaMinAvioes.getText().isEmpty()) {
+            disMinimaAvioes = Double.parseDouble(jTxDistanciaMinAvioes.getText());
+        }
+
+        if (!jTxTempoMinimo.getText().isEmpty()) {
+            tempoMinimo = Integer.parseInt(jTxTempoMinimo.getText());
+        }
+
         this.colisao.setDisMinimaAeroporto(disMinimaAeroporto);
         this.colisao.setDisMinimaAvioes(disMinimaAvioes);
         this.colisao.setTempoMinimo(tempoMinimo);
@@ -175,19 +188,19 @@ public class Radar extends javax.swing.JFrame {
         }
 
         jPnRadarAvioes.add(UtilComponentes.getRadar());
-        
+
         jPnRadarAvioes.validate();
         jPnRadarAvioes.repaint();
     }
-    
-    private void gerarRelatorio(){
+
+    private void gerarRelatorio() {
         Aviao aviao = getAviaoSelecionado();
-        
-        if (aviao == null){
+
+        if (aviao == null) {
             return;
         }
-        
-        UtilFuncoesColisao.calcularRotasDeColisao(aviao, this.avioes, this.colisao, modelRelatorio);        
+
+        UtilFuncoesColisao.calcularRotasDeColisao(aviao, this.avioes, this.colisao, modelRelatorio);
     }
 
     /**
@@ -240,12 +253,22 @@ public class Radar extends javax.swing.JFrame {
         jTxtYRotacionar = new javax.swing.JTextField();
         jLblRotacionarY = new javax.swing.JLabel();
         jBtnRotacionar = new javax.swing.JButton();
+        jPnFuncoesRatreamento = new javax.swing.JPanel();
+        jPnDistanciaMinAeroPorto = new javax.swing.JPanel();
+        jTxDistanciaMinAeroPorto = new javax.swing.JTextField();
+        jBtnSalvarDistanciaMinAeroPorto = new javax.swing.JButton();
+        jPnDistanciaMinAvioes = new javax.swing.JPanel();
+        jTxDistanciaMinAvioes = new javax.swing.JTextField();
+        jBtnSalvarDistanciaMinAvioes = new javax.swing.JButton();
+        jPnTempoMinimo = new javax.swing.JPanel();
+        jTxTempoMinimo = new javax.swing.JTextField();
+        jBtnSalvarTempoMinimo = new javax.swing.JButton();
         jPnAvioes = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTbAvioes = new javax.swing.JTable();
         jPnRelatorio = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jListRelatorio = new javax.swing.JList<>();
+        jListRelatorio = new javax.swing.JList<String>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Radar");
@@ -270,6 +293,11 @@ public class Radar extends javax.swing.JFrame {
                 jTxtXActionPerformed(evt);
             }
         });
+        jTxtX.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTxtXKeyTyped(evt);
+            }
+        });
 
         jLblY.setText("Y:");
 
@@ -292,7 +320,7 @@ public class Radar extends javax.swing.JFrame {
         jTxtDirecao.setPreferredSize(new java.awt.Dimension(120, 25));
 
         jBtnSalvarAviao.setText("Salvar");
-        jBtnSalvarAviao.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBtnSalvarAviao.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jBtnSalvarAviao.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jBtnSalvarAviaoMouseClicked(evt);
@@ -305,7 +333,7 @@ public class Radar extends javax.swing.JFrame {
         });
 
         JBtnExcluir.setText("Excluir");
-        JBtnExcluir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        JBtnExcluir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         JBtnExcluir.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 JBtnExcluirMouseClicked(evt);
@@ -420,10 +448,15 @@ public class Radar extends javax.swing.JFrame {
         jTxtYTranslandar.setPreferredSize(new java.awt.Dimension(20, 23));
 
         jBtnTranslandar.setText("Translandar");
-        jBtnTranslandar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBtnTranslandar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jBtnTranslandar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jBtnTranslandarMouseClicked(evt);
+            }
+        });
+        jBtnTranslandar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jBtnTranslandarActionPerformed(evt);
             }
         });
 
@@ -472,7 +505,7 @@ public class Radar extends javax.swing.JFrame {
         jTxtYEscalonar.setPreferredSize(new java.awt.Dimension(20, 23));
 
         jBtnEscalonar.setText("Escalonar");
-        jBtnEscalonar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBtnEscalonar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jBtnEscalonar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jBtnEscalonarMouseClicked(evt);
@@ -532,7 +565,7 @@ public class Radar extends javax.swing.JFrame {
         jLblRotacionarY.setText("Y:");
 
         jBtnRotacionar.setText("Rotacionar");
-        jBtnRotacionar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jBtnRotacionar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jBtnRotacionar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jBtnRotacionarMouseClicked(evt);
@@ -620,6 +653,135 @@ public class Radar extends javax.swing.JFrame {
 
         jTabOperacoesAvioes.addTab("Funções de Transformação", jPnFuncoesTransformacao);
 
+        jPnDistanciaMinAeroPorto.setBorder(javax.swing.BorderFactory.createTitledBorder("Distancia Mínima do Aeroporto"));
+        jPnDistanciaMinAeroPorto.setPreferredSize(new java.awt.Dimension(230, 300));
+
+        jTxDistanciaMinAeroPorto.setPreferredSize(new java.awt.Dimension(20, 23));
+
+        jBtnSalvarDistanciaMinAeroPorto.setText("Salvar");
+        jBtnSalvarDistanciaMinAeroPorto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jBtnSalvarDistanciaMinAeroPorto.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jBtnSalvarDistanciaMinAeroPortoMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPnDistanciaMinAeroPortoLayout = new javax.swing.GroupLayout(jPnDistanciaMinAeroPorto);
+        jPnDistanciaMinAeroPorto.setLayout(jPnDistanciaMinAeroPortoLayout);
+        jPnDistanciaMinAeroPortoLayout.setHorizontalGroup(
+            jPnDistanciaMinAeroPortoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPnDistanciaMinAeroPortoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPnDistanciaMinAeroPortoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPnDistanciaMinAeroPortoLayout.createSequentialGroup()
+                        .addComponent(jBtnSalvarDistanciaMinAeroPorto, javax.swing.GroupLayout.PREFERRED_SIZE, 184, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 14, Short.MAX_VALUE))
+                    .addComponent(jTxDistanciaMinAeroPorto, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPnDistanciaMinAeroPortoLayout.setVerticalGroup(
+            jPnDistanciaMinAeroPortoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPnDistanciaMinAeroPortoLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(jTxDistanciaMinAeroPorto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jBtnSalvarDistanciaMinAeroPorto, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        jPnDistanciaMinAvioes.setBorder(javax.swing.BorderFactory.createTitledBorder("Distancia Mínima dos Aviões"));
+        jPnDistanciaMinAvioes.setPreferredSize(new java.awt.Dimension(230, 300));
+
+        jTxDistanciaMinAvioes.setPreferredSize(new java.awt.Dimension(20, 23));
+
+        jBtnSalvarDistanciaMinAvioes.setText("Salvar");
+        jBtnSalvarDistanciaMinAvioes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jBtnSalvarDistanciaMinAvioes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jBtnSalvarDistanciaMinAvioesMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPnDistanciaMinAvioesLayout = new javax.swing.GroupLayout(jPnDistanciaMinAvioes);
+        jPnDistanciaMinAvioes.setLayout(jPnDistanciaMinAvioesLayout);
+        jPnDistanciaMinAvioesLayout.setHorizontalGroup(
+            jPnDistanciaMinAvioesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPnDistanciaMinAvioesLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPnDistanciaMinAvioesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jTxDistanciaMinAvioes, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPnDistanciaMinAvioesLayout.createSequentialGroup()
+                        .addComponent(jBtnSalvarDistanciaMinAvioes, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 11, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPnDistanciaMinAvioesLayout.setVerticalGroup(
+            jPnDistanciaMinAvioesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPnDistanciaMinAvioesLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(jTxDistanciaMinAvioes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
+                .addComponent(jBtnSalvarDistanciaMinAvioes, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        jPnTempoMinimo.setBorder(javax.swing.BorderFactory.createTitledBorder("Tempo Mínimo"));
+        jPnTempoMinimo.setPreferredSize(new java.awt.Dimension(230, 300));
+
+        jTxTempoMinimo.setPreferredSize(new java.awt.Dimension(20, 23));
+
+        jBtnSalvarTempoMinimo.setText("Salvar");
+        jBtnSalvarTempoMinimo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jBtnSalvarTempoMinimo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jBtnSalvarTempoMinimoMouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPnTempoMinimoLayout = new javax.swing.GroupLayout(jPnTempoMinimo);
+        jPnTempoMinimo.setLayout(jPnTempoMinimoLayout);
+        jPnTempoMinimoLayout.setHorizontalGroup(
+            jPnTempoMinimoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPnTempoMinimoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPnTempoMinimoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jTxTempoMinimo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBtnSalvarTempoMinimo, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+        jPnTempoMinimoLayout.setVerticalGroup(
+            jPnTempoMinimoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPnTempoMinimoLayout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addComponent(jTxTempoMinimo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jBtnSalvarTempoMinimo, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        javax.swing.GroupLayout jPnFuncoesRatreamentoLayout = new javax.swing.GroupLayout(jPnFuncoesRatreamento);
+        jPnFuncoesRatreamento.setLayout(jPnFuncoesRatreamentoLayout);
+        jPnFuncoesRatreamentoLayout.setHorizontalGroup(
+            jPnFuncoesRatreamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPnFuncoesRatreamentoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPnDistanciaMinAeroPorto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jPnDistanciaMinAvioes, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPnTempoMinimo, javax.swing.GroupLayout.PREFERRED_SIZE, 232, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(445, Short.MAX_VALUE))
+        );
+        jPnFuncoesRatreamentoLayout.setVerticalGroup(
+            jPnFuncoesRatreamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPnFuncoesRatreamentoLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPnFuncoesRatreamentoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jPnDistanciaMinAvioes, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+                    .addComponent(jPnTempoMinimo, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE)
+                    .addComponent(jPnDistanciaMinAeroPorto, javax.swing.GroupLayout.DEFAULT_SIZE, 210, Short.MAX_VALUE))
+                .addContainerGap())
+        );
+
+        jTabOperacoesAvioes.addTab("Funções de Rastreamento", jPnFuncoesRatreamento);
+
         jPnRadar.add(jTabOperacoesAvioes);
         jTabOperacoesAvioes.setBounds(0, 370, 1180, 260);
 
@@ -688,10 +850,10 @@ public class Radar extends javax.swing.JFrame {
 
         jPnRelatorio.setBorder(javax.swing.BorderFactory.createTitledBorder("Relatório"));
 
-        jListRelatorio.setModel(new javax.swing.AbstractListModel<String>() {
+        jListRelatorio.setModel(new javax.swing.AbstractListModel() {
             String[] strings = { "Avião adicionado" };
             public int getSize() { return strings.length; }
-            public String getElementAt(int i) { return strings[i]; }
+            public Object getElementAt(int i) { return strings[i]; }
         });
         jScrollPane2.setViewportView(jListRelatorio);
 
@@ -740,22 +902,22 @@ public class Radar extends javax.swing.JFrame {
     }//GEN-LAST:event_jBtnSalvarAviaoActionPerformed
 
     private void jBtnSalvarAviaoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBtnSalvarAviaoMouseClicked
-        
-        if ((!jTxtX.getText().isEmpty()) && (!jTxtY.getText().isEmpty()) 
+
+        if ((!jTxtX.getText().isEmpty()) && (!jTxtY.getText().isEmpty())
                 && (!jTxtRaio.getText().isEmpty()) && (!jTxtAngulo.getText().isEmpty())
-                && (!jTxtVelocidade.getText().isEmpty()) && (!jTxtDirecao.getText().isEmpty())){
-        
+                && (!jTxtVelocidade.getText().isEmpty()) && (!jTxtDirecao.getText().isEmpty())) {
+
             inserirOuEditarAviao();
             inserirOuEditarDadosColisao();
             gerarRelatorio();
             limparCampos();
             recarregarAvioes();
             recarregarAvioesNoRadar();
-        
-        }else{
-          JOptionPane.showMessageDialog(null, "Informe todos os dados");  
+
+        } else {
+            JOptionPane.showMessageDialog(null, "Informe todos os dados");
         }
-            
+
     }//GEN-LAST:event_jBtnSalvarAviaoMouseClicked
 
     private void jTbAvioesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTbAvioesMouseClicked
@@ -782,64 +944,61 @@ public class Radar extends javax.swing.JFrame {
     }//GEN-LAST:event_JBtnExcluirMouseClicked
 
     private void jBtnTranslandarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBtnTranslandarMouseClicked
-        
-        if (this.idAviaoSelecionado != null){
-            
+
+        if (this.idAviaoSelecionado != null) {
+
             if ((!jTxtXTranslandar.getText().isEmpty()) && (!jTxtYTranslandar.getText().isEmpty())) {
                 UtilFuncoesTransformacao.translandar(getAviaoSelecionado(), getCoordenadaTranslacao());
                 limparCamposDadosTranslacao();
                 recarregarAvioes();
                 recarregarAvioesNoRadar();
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Informe todos os dados");
             }
-            
-        }else{
+
+        } else {
             JOptionPane.showMessageDialog(null, "Selecione um avião para translandar");
         }
-        
+
     }//GEN-LAST:event_jBtnTranslandarMouseClicked
 
     private void jBtnEscalonarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBtnEscalonarMouseClicked
-        
-        if (this.idAviaoSelecionado != null){
-            
+
+        if (this.idAviaoSelecionado != null) {
+
             if ((!jTxtXEscalonar.getText().isEmpty()) && (!jTxtYEscalonar.getText().isEmpty())) {
                 UtilFuncoesTransformacao.escalonar(getAviaoSelecionado(), getCoordenadaEscalonamento());
                 limparCamposDadosEscalonamento();
                 recarregarAvioes();
                 recarregarAvioesNoRadar();
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Informe todos os dados");
             }
-            
-        }else{
+
+        } else {
             JOptionPane.showMessageDialog(null, "Selecione um avião para escalonar");
         }
-        
-   
+
+
     }//GEN-LAST:event_jBtnEscalonarMouseClicked
 
     private void jBtnRotacionarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBtnRotacionarMouseClicked
-        
-         if (this.idAviaoSelecionado != null){
-            
+
+        if (this.idAviaoSelecionado != null) {
+
             if ((!jTxtXRotacionar.getText().isEmpty()) && (!jTxtYRotacionar.getText().isEmpty())) {
                 UtilFuncoesTransformacao.rotacionar(getAviaoSelecionado(), getCoordenadaRotacao());
                 limparCamposDadosRotacao();
                 recarregarAvioes();
                 recarregarAvioesNoRadar();
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Informe todos os dados");
             }
-            
-        }else{
+
+        } else {
             JOptionPane.showMessageDialog(null, "Selecione um avião para rotacionar");
         }
-        
-        
-        
-        
+
     }//GEN-LAST:event_jBtnRotacionarMouseClicked
 
     private void jTxtXActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTxtXActionPerformed
@@ -849,6 +1008,29 @@ public class Radar extends javax.swing.JFrame {
     private void JBtnExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_JBtnExcluirActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_JBtnExcluirActionPerformed
+
+    private void jBtnSalvarDistanciaMinAeroPortoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBtnSalvarDistanciaMinAeroPortoMouseClicked
+        inserirOuEditarDadosColisao();
+    }//GEN-LAST:event_jBtnSalvarDistanciaMinAeroPortoMouseClicked
+
+    private void jBtnSalvarDistanciaMinAvioesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBtnSalvarDistanciaMinAvioesMouseClicked
+        inserirOuEditarDadosColisao();
+    }//GEN-LAST:event_jBtnSalvarDistanciaMinAvioesMouseClicked
+
+    private void jBtnSalvarTempoMinimoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jBtnSalvarTempoMinimoMouseClicked
+        inserirOuEditarDadosColisao();
+    }//GEN-LAST:event_jBtnSalvarTempoMinimoMouseClicked
+
+    private void jBtnTranslandarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBtnTranslandarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jBtnTranslandarActionPerformed
+
+    private void jTxtXKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTxtXKeyTyped
+        String caracteres = "0123456789";
+        if (!caracteres.contains(evt.getKeyChar() + "")) {
+            evt.consume();
+        }
+    }//GEN-LAST:event_jTxtXKeyTyped
 
     /**
      * @param args the command line arguments
@@ -890,6 +1072,9 @@ public class Radar extends javax.swing.JFrame {
     private javax.swing.JButton jBtnEscalonar;
     private javax.swing.JButton jBtnRotacionar;
     private javax.swing.JButton jBtnSalvarAviao;
+    private javax.swing.JButton jBtnSalvarDistanciaMinAeroPorto;
+    private javax.swing.JButton jBtnSalvarDistanciaMinAvioes;
+    private javax.swing.JButton jBtnSalvarTempoMinimo;
     private javax.swing.JButton jBtnTranslandar;
     private javax.swing.JLabel jLblAngulo;
     private javax.swing.JLabel jLblAngulo1;
@@ -908,18 +1093,25 @@ public class Radar extends javax.swing.JFrame {
     private javax.swing.JList<String> jListRelatorio;
     private javax.swing.JPanel jPnAvioes;
     private javax.swing.JPanel jPnDadosAviao;
+    private javax.swing.JPanel jPnDistanciaMinAeroPorto;
+    private javax.swing.JPanel jPnDistanciaMinAvioes;
     private javax.swing.JPanel jPnEntradaDados;
     private javax.swing.JPanel jPnEscalonar;
+    private javax.swing.JPanel jPnFuncoesRatreamento;
     private javax.swing.JPanel jPnFuncoesTransformacao;
     private javax.swing.JPanel jPnRadar;
     private javax.swing.JPanel jPnRadarAvioes;
     private javax.swing.JPanel jPnRelatorio;
     private javax.swing.JPanel jPnRotacionar;
+    private javax.swing.JPanel jPnTempoMinimo;
     private javax.swing.JPanel jPnTranslandar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabOperacoesAvioes;
     private javax.swing.JTable jTbAvioes;
+    private javax.swing.JTextField jTxDistanciaMinAeroPorto;
+    private javax.swing.JTextField jTxDistanciaMinAvioes;
+    private javax.swing.JTextField jTxTempoMinimo;
     private javax.swing.JTextField jTxtAngulo;
     private javax.swing.JTextField jTxtAnguloRotacionar;
     private javax.swing.JTextField jTxtDirecao;
